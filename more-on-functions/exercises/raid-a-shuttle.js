@@ -54,3 +54,42 @@ console.log("Hold status: " + holdStatus(cargoHold));
 //b). Call your anonymous fuel and cargo functions from within irs.
 
 //c). Use a template literal to return, "Raided _____ kg of fuel from the tanks, and stole ____ and ____ from the cargo hold."
+/* Steal some fuel from the shuttle */
+// Anonymous function to siphon fuel
+let siphonFuel = function(level) {
+  let fuelSiphoned = 0;
+  if (checkFuel(level) === 'green') {
+    fuelSiphoned = level - 100001; // Keep it just above 100000
+  } else if (checkFuel(level) === 'yellow') {
+    fuelSiphoned = level - 50001; // Keep it just above 50000
+  }
+  return fuelSiphoned;
+};
+
+// Test the siphonFuel function
+let siphonedAmount = siphonFuel(fuelLevel);
+fuelLevel -= siphonedAmount;
+
+/* Liberate some cargo */
+// Anonymous function to steal cargo
+let stealCargo = function(arr) {
+  let stolenItems = [];
+  stolenItems.push(arr[0], arr[4]); // Steal 'meal kits' and 'gold'
+  arr[0] = 'rocks'; // Replace with worthless items
+  arr[4] = 'sand';
+  return stolenItems;
+};
+
+// Test the stealCargo function
+let stolenCargo = stealCargo(cargoHold);
+
+/* Print a receipt for the accountant */
+// Function to generate the IRS receipt
+function irs(fuelLevel, cargoHold) {
+  let siphonedAmount = siphonFuel(fuelLevel);
+  let stolenCargo = stealCargo(cargoHold);
+  return `Raided ${siphonedAmount} kg of fuel from the tanks, and stole ${stolenCargo[0]} and ${stolenCargo[1]} from the cargo hold.`;
+}
+
+// Print the IRS receipt
+console.log(irs(fuelLevel, cargoHold));
