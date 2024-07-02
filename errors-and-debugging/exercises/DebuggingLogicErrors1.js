@@ -18,7 +18,7 @@ if (fuelLevel >= 20000) {
 
 if (crewStatus && computerStatus === 'green'){
    console.log('Crew & computer cleared.');
-   launchReady = true;
+   launchReady = launchReady && true;
 } else {
    console.log('WARNING: Crew or computer not ready!');
    launchReady = false;
