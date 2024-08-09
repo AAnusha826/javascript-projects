@@ -1,8 +1,8 @@
 <!doctype html>
-
+<html lang="en">
 <head>
-	<meta charset="utf-8">
 	<script>
+		<meta charset="utf-8" />
 		// TODO: create a handler
     window.addEventListener("load", function(){
         // TODO: register the handler
@@ -14,6 +14,65 @@
 
 	<form id="searchForm">
     <!-- TODO: add form elements -->
-	</form>
+	<label for="query">Search: </label>
+        <input type="text" id="query" name="q">
+
+        <div>
+            <input type="radio" id="google" name="engine" value="google">
+            <label for="google">Google</label>
+        </div>
+
+        <div>
+            <input type="radio" id="duckDuckGo" name="engine" value="duckDuckGo">
+            <label for="duckDuckGo">DuckDuckGo</label>
+        </div>
+
+        <div>
+            <input type="radio" id="bing" name="engine" value="bing">
+            <label for="bing">Bing</label>
+        </div>
+
+        <div>
+            <input type="radio" id="ask" name="engine" value="ask">
+            <label for="ask">Ask</label>
+        </div>
+
+        <button type="submit">Go!</button>
+    </form>
+
+    <script>
+        // Add your JavaScript code here
+		// Function to handle form submission and set the action URL
+function setSearchEngine(event) {
+    event.preventDefault();  // Prevent the default form submission
+
+    // Retrieve the selected search engine from the radio group
+    const engine = document.querySelector('input[name="engine"]:checked').value;
+
+    // Object to store search engine URLs
+    let actions = {
+        "google": "https://www.google.com/search",
+        "duckDuckGo": "https://duckduckgo.com/",
+        "bing": "https://www.bing.com/search",
+        "ask": "https://www.ask.com/web"
+    };
+
+    // Set the form action based on the selected search engine
+    const actionURL = actions[engine];
+    const form = document.getElementById('searchForm');
+    form.setAttribute('action', actionURL);
+
+    // Submit the form manually after setting the action
+    form.submit();
+}
+
+// Register the event handler for form submission
+window.addEventListener('load', function() {
+    const form = document.getElementById('searchForm');
+    form.addEventListener('submit', setSearchEngine);
+});
+
+    </script>
 
 </body>
+</html>

@@ -74,7 +74,8 @@ function funPhrase(str) {
 // 2. Call your function and print the returned phrase.
 
 let str = 'Functions rock!';
-console.log(funPhrase(str)); // we put the 'Fun' in 'Functions rock!'
+console.log(funPhrase(str)); // we
+ put the 'Fun' in 'Functions rock!'
 
 // Area of rectangle equal to length x width
 // 1. Define a function with the required parameters to calculate the area of a rectangle.
